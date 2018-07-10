@@ -1,0 +1,47 @@
+.Title{
+  margin-top: 0;
+  text-align: center;
+  font-size: 60px;
+}
+
+.input{
+  border-radius: 40px;
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.form_signin label{
+  border:none !important;
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+
+.input_short{
+  width: 300px;
+}
+
+.input_long{
+  width: 600px;
+}
+
+.input_big{
+  width: 600px;
+  height: 200px;
+}
+
+.submit{
+  width: 50px;
+  height: 50px;
+  align-items: center;
+}
+
+#select_skills{
+  width: 800px;
+  height: 50px;
+}
+
+#submit_skills{
+  width: 200px;
+  height: 50px;
+  text-align: center;
+}

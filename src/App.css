@@ -45,3 +45,18 @@
   height: 50px;
   text-align: center;
 }
+
+#container_jobs{
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 15px;
+}
+
+#pourcentage{
+  float: right;
+}
+
+#information_jobs{
+  display: inline-block;
+}

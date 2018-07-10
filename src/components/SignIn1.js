@@ -4,7 +4,7 @@ import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signin2 from './SignIn2';
 
-class Login extends Component {
+class SignIn1 extends Component {
 
     // constructor() {
     //     super();
@@ -77,4 +77,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default SignIn1;

@@ -10,7 +10,7 @@ class ListSkills extends Component {
       rating: 1
     };
   }
-  
+
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
   }

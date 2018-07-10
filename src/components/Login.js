@@ -19,7 +19,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div id="submit">
                   <Link to='/signin2'> Next </Link>
                 </div>
                 <div className="container col-md-6 col-md-2-offset text-center" >
@@ -56,7 +56,7 @@ class Login extends Component {
 
                         <div className="row ">
                             <div className="col-md-12">
-                                <label htmlFor="input_address" className="form-control">Email </label>
+                                <label htmlFor="input_address" className="form-control">Address </label>
                                 <input id="input_address" className="input input_long" type="text" />
                             </div>
                         </div>
@@ -72,9 +72,6 @@ class Login extends Component {
                         </div>
                     </form>
                 </div>
-                <div className="submit">
-                </div>
-
             </div>
         );
     }

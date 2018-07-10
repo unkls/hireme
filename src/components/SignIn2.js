@@ -51,7 +51,7 @@ class Signin2 extends Component {
                                   onClick={this.handleKeyPress}
                                 />
 
-                            <ListSkills list={data[0]} />
+                            <ListSkills list={data[0]}/>
 
                         </div>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import StarRatingComponent from 'react-star-rating-component';
+import StarRating from './StarRating';
 
 class ListSkills extends Component {
   constructor() {
@@ -10,29 +10,22 @@ class ListSkills extends Component {
       rating: 1
     };
   }
-
+  
   onStarClick(nextValue, prevValue, name) {
-  this.setState({rating: nextValue});
-}
+    this.setState({rating: nextValue});
+  }
 
   render() {
         const { rating } = this.state;
     return (
       <ul>
         {this.props.list.map(function(listValue){
-          return
+          return(
           <li key={listValue}>
-          {listValue}
-          <div>
-            <h2>Rating from state: {rating}</h2>
-            <StarRatingComponent
-              name="rate1"
-              starCount={10}
-              value={rating}
-              onStarClick={this.onStarClick.bind(this)}
-            />
-          </div>
-          </li>;
+            {listValue}
+            <StarRating />
+          </li>
+        )
         })}
       </ul>
     );

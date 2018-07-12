@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import StarRating from './StarRating';
 
-
-
 class ListSkills extends Component {
   constructor() {
     super();

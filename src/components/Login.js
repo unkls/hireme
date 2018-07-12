@@ -13,6 +13,14 @@ export default class Login extends Component {
     };
   }
 
+  componentWillMount() { // before render
+    // check if the local store is already full
+    var alreadyConnected = localStorage.getItem('lvlApp')
+    if (alreadyConnected != null) {
+      this.props.history.push("/main");
+    }
+  }
+
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
@@ -58,7 +66,9 @@ export default class Login extends Component {
           >
             Login
           </Button>
-          <Link to='/signin1'> Need create account ? </Link>
+          <Link to='/signin1/1'> Need create company account ? </Link>
+          <Link to='/signin1/0'> Need create account ? </Link>
+
         </form>
       </div>
     );

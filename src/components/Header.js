@@ -38,14 +38,17 @@ export default class Header extends React.Component {
     var dropDown = ""
     var words = ""
     if (this.isRecruiter() == true) {
-      dropDown = <DropdownItem> Create job </DropdownItem>
+      var dropDownCreateJobs = <DropdownItem> Create job </DropdownItem>
+      var droptDownSettings = <DropdownItem href="/signin1/1"><p> Settings </p> </DropdownItem>
       words = "best students for you"
     }else {
       words = "best jobs for you"
+      var droptDownSettings = <DropdownItem href="/signin1/0"><p> Settings </p> </DropdownItem>
     }
 
     return (
       <div>
+
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/main">HireMe</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -71,10 +74,9 @@ export default class Header extends React.Component {
                 <DropdownItem>
                   {words}
                 </DropdownItem>
-                <DropdownItem>
-                <Link to='/settings'> Settings </Link>
-                </DropdownItem>
                  {dropDown}
+                 {dropDownCreateJobs}
+                 {droptDownSettings}
                 </DropdownMenu>
             </UncontrolledDropdown>
             </Nav>

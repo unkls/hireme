@@ -36,14 +36,6 @@ class SignIn1 extends Component {
     }
 
     handleSubmit() {
-      fetch("")
-      .then(function(data) {
-        // Here you get the data to modify as you please
-        })
-      .catch(function(error) {
-        // If there is any error you will catch them here
-      });
-
       (async () => {
         var url = this.makeURL()
         const rawResponse = await fetch(url, {
@@ -62,11 +54,16 @@ class SignIn1 extends Component {
     }
 
     render() {
+      var more = ""
+
       var typeUser = this.props.match.params.id
       if (typeUser == 0) {
         var more = ""
+        var message1 = 'Dites nous en plus sur vous'
+        var message2 = 'Une petite description ?'
       }else {
-        console.log("recruit");
+        var message1 = 'Dites nous en plus sur votre entreprise'
+        var message2 = 'Une petite description de l\'entreprise ?'
         var more =  <div className="row">
                       <div className="col-md-12">
                         <label htmlFor="input_company" className="form-control"> Company </label>
@@ -81,7 +78,7 @@ class SignIn1 extends Component {
                 </div>
                 <div id="form1" className="container col-md-6 col-md-2-offset text-center" >
                     <form className="form_signin">
-                        <p className="Title"> {this.props.message1} </p>
+                        <p className="Title"> {message1} </p>
                         <div className="row">
                             <div className="col-md-6">
                                 <label htmlFor="input_firstName" className="form-control"> First Name</label>
@@ -116,7 +113,7 @@ class SignIn1 extends Component {
                             </div>
                         </div>
 
-                        <p className="Title"> {this.props.message2} </p>
+                        <p className="Title"> {message2} </p>
 
                         <div className="row ">
                             <div className="col-md-12">

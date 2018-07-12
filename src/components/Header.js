@@ -12,6 +12,9 @@ import {
   DropdownMenu,
   Input,
   DropdownItem } from 'reactstrap';
+  import Select from 'react-select';
+  import { Link } from 'react-router-dom';
+
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -32,52 +35,48 @@ export default class Header extends React.Component {
   }
 
   render() {
-    let dropDown
-
+    var dropDown = ""
+    var words = ""
     if (this.isRecruiter() == true) {
-      dropDown =               <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav caret>
-                        Options
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem>
-                          Best jobs for you
-                        </DropdownItem>
-                        <DropdownItem>
-                          Settings
-                        </DropdownItem>
-                        <DropdownItem>
-                          Create job if recruiter
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-    } else {
-      dropDown =               <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav caret>
-                        Options
-                      </DropdownToggle>
-                      <DropdownMenu right>
-                        <DropdownItem>
-                          Best jobs for you
-                        </DropdownItem>
-                        <DropdownItem>
-                          Settings
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
+      dropDown = <DropdownItem> Create job </DropdownItem>
+      words = "best students for you"
+    }else {
+      words = "best jobs for you"
     }
 
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/main">HireMe</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Input type="search" name="search" id="exampleSearch" placeholder="search placeholder" />
+                <Select
+                  name="form-field-name"
+                  onChange={this.handleChange}
+                  onNewOptionClick={this.handleNewOption}
+                  options={[
+                    { value: 'one', label: 'One' },
+                    { value: 'two', label: 'Two' },
+                  ]}
+                  autosize={false}
+                />
               </NavItem>
-              {dropDown}
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                <DropdownItem>
+                  {words}
+                </DropdownItem>
+                <DropdownItem>
+                <Link to='/settings'> Settings </Link>
+                </DropdownItem>
+                 {dropDown}
+                </DropdownMenu>
+            </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>

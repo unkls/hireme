@@ -1,36 +1,87 @@
-import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  Input,
+  DropdownItem } from 'reactstrap';
 
-class Header extends Component {
-  constructor() {
-    super()
+export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  isRecruiter(){
+    return true
   }
 
-  render(){
-    return (
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#home">HireMe</a>
-          </Navbar.Brand>
-        </Navbar.Header>
-      <Nav pullRight>
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search" />
-          </FormGroup>{' '}
-          <Button type="submit">Submit</Button>
-        </Navbar.Form>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-        </NavDropdown>
-      </Nav>
-    </Navbar>
+  render() {
+    let dropDown
 
-    )
+    if (this.isRecruiter() == true) {
+      dropDown =               <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav caret>
+                        Options
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <DropdownItem>
+                          Best jobs for you
+                        </DropdownItem>
+                        <DropdownItem>
+                          Settings
+                        </DropdownItem>
+                        <DropdownItem>
+                          Create job if recruiter
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+    } else {
+      dropDown =               <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav caret>
+                        Options
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <DropdownItem>
+                          Best jobs for you
+                        </DropdownItem>
+                        <DropdownItem>
+                          Settings
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+    }
+
+    return (
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <Input type="search" name="search" id="exampleSearch" placeholder="search placeholder" />
+              </NavItem>
+              {dropDown}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
   }
 }
-
-export default Header

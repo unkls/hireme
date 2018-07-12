@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import StarRating from './StarRating';
 
+
+
 class ListSkills extends Component {
   constructor() {
     super();
@@ -10,6 +12,7 @@ class ListSkills extends Component {
       rating: 1
     };
   }
+
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
@@ -21,7 +24,7 @@ class ListSkills extends Component {
       <ul>
         {this.props.list.map(function(listValue){
           return(
-          <li key={listValue}>
+          <li style={{ fontSize: 25 }} key={listValue}>
             {listValue}
             <StarRating />
           </li>

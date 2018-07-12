@@ -4,7 +4,7 @@ import Signin2 from './SignIn2';
 import PropTypes from 'prop-types';
 import '../App.css';
 
-class SignIn1 extends Component {
+class SignIn3 extends Component {
 
     constructor() {
         super()
@@ -78,14 +78,14 @@ class SignIn1 extends Component {
     }
 }
 
-SignIn1.propTypes = {
+SignIn3.propTypes = {
   message1: PropTypes.string,
   message2: PropTypes.string
 };
 
-SignIn1.defaultProps = {
-  message1: 'Dites nous en plus sur vous',
-  message2: 'Une petite description ?'
+SignIn3.defaultProps = {
+  message1: 'Dites nous en plus sur le job',
+  message2: 'Une petite description du job ?'
 };
 
-export default SignIn1;
+export default SignIn3;

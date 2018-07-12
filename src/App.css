@@ -61,3 +61,18 @@
 #information_jobs{
   display: inline-block;
 }
+
+#form1{
+  margin-left: 25%;
+}
+
+.Select-control{
+  width: 500px !important;
+  margin-left: 32%;
+  margin-bottom: 10px;
+}
+
+#button_modal{
+  float: right;
+  margin-bottom: 1%;
+}

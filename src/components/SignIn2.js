@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import ListSkills from './ListSkills'
+import { Link } from 'react-router-dom';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class Signin2 extends Component {
 
@@ -8,8 +11,19 @@ class Signin2 extends Component {
         super();
         this.state = {
           skills: [],
+          selectedOption: '',
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+    handleChange = (selectedOption) => {
+      this.setState({ selectedOption });
+      // selectedOption can be null when the `x` (close) button is clicked
+      if (selectedOption) {
+        console.log(`Selected: ${selectedOption.label}`);
+        var allSkills = this.state.skills
+        allSkills.push(selectedOption.label)
+        this.setState({ skills : allSkills });
+      }
     }
 
     componentWillMount() { // before render
@@ -30,18 +44,31 @@ class Signin2 extends Component {
       this.addSkill(skill)
     }
 
+    handleNewOption(option){
+      console.log("New option");
+      //send this option to API
+    }
+
     render() {
       var data = [this.state.skills]
+      const { selectedOption } = this.state;
         return (
             <div>
                 <div className=" text-center" >
                     <form className="form_signin">
                         <p className="Title"> Vos compétences </p>
                         <div className="col-md">
-                            <input id="select_skills"
-                              className="input input_big"
-                              type="textbox"
-                              placeholder="entrer vos compétences"
+                            <Select.Creatable
+                              id="MOIMOI"
+                              name="form-field-name"
+                              value={selectedOption}
+                              onChange={this.handleChange}
+                              onNewOptionClick={this.handleNewOption}
+                              options={[
+                                { value: 'one', label: 'One' },
+                                { value: 'two', label: 'Two' },
+                              ]}
+                              autosize={false}
                             />
 
                                 <input id="submit_skills"
@@ -58,7 +85,8 @@ class Signin2 extends Component {
                     </form>
                 </div>
                 <div className=" text-center">
-                    <input value="end" id="submit" type="button" />
+                    <Link id="submit" to='/main'> END </Link>
+
                 </div>
             </div>
         );

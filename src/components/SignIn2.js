@@ -12,6 +12,8 @@ class Signin2 extends Component {
         this.state = {
           skills: [],
           selectedOption: '',
+          star: '',
+          data: null,
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -19,14 +21,34 @@ class Signin2 extends Component {
       this.setState({ selectedOption });
       // selectedOption can be null when the `x` (close) button is clicked
       if (selectedOption) {
-        console.log(`Selected: ${selectedOption.label}`);
+        console.log(selectedOption);
         var allSkills = this.state.skills
         allSkills.push(selectedOption.label)
         this.setState({ skills : allSkills });
       }
     }
 
-    componentWillMount() { // before render
+    componentWillMount(){
+      (async () => {
+        var url = "http://10.5.1.177:3000/v1/skills"
+        const rawResponse = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+                });
+        const content = await rawResponse.json();
+        var options = []
+        console.log(content);
+        for (var i = 0; i < content.length; i++) {
+          options.push({
+            label: content[i]['skillName'],
+            value: content[i]['skillId']
+          })
+        }
+        this.setState({data : options})
+      })();
     }
 
     addSkill(skills) {
@@ -46,17 +68,44 @@ class Signin2 extends Component {
 
     handleNewOption(option){
       console.log("New option");
-      //send this option to API
+
+      (async () => {
+        var url = "http://10.5.1.177:3000/v1/skills?skillName=" + option
+        const rawResponse = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({a: 1, b: 'Textual content'})
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+      })();
+
+    }
+
+    handleStar = (star) => {
+      this.setState({star: star});
+      console.log(star);
     }
 
     render() {
+      if (this.props.match.params.id == 0) {
+        console.log("inscription");
+        var message1 = "Vos compétences"
+      }else {
+        console.log("job");
+        var message1 = "Les compétences pour le job"
+      }
       var data = [this.state.skills]
       const { selectedOption } = this.state;
         return (
             <div>
                 <div className=" text-center" >
                     <form className="form_signin">
-                        <p className="Title"> Vos compétences </p>
+                        <p className="Title"> {message1} </p>
                         <div className="col-md">
                             <Select.Creatable
                               id="MOIMOI"
@@ -64,21 +113,17 @@ class Signin2 extends Component {
                               value={selectedOption}
                               onChange={this.handleChange}
                               onNewOptionClick={this.handleNewOption}
-                              options={[
-                                { value: 'one', label: 'One' },
-                                { value: 'two', label: 'Two' },
-                              ]}
+                              options={this.state.data}
                               autosize={false}
                             />
-
-                                <input id="submit_skills"
+                            <input id="submit_skills"
                                   className="input"
                                   type="textbox"
                                   value="add"
                                   onClick={this.handleKeyPress}
-                                />
+                            />
 
-                            <ListSkills list={data[0]}/>
+                            <ListSkills list={data[0]} idJob={this.props.match.params.idJob} idSkills={this.state.selectedOption.value}/>
 
                         </div>
 

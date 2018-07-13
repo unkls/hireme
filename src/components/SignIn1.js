@@ -50,7 +50,7 @@ class SignIn1 extends Component {
 
         console.log(content);
       })();
-      this.props.history.push("/signin2");
+      this.props.history.push("/signin2/0");
     }
 
     render() {

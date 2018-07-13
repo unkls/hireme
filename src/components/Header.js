@@ -31,7 +31,7 @@ export default class Header extends React.Component {
     });
   }
   isRecruiter(){
-    return true
+    return false
   }
 
   render() {

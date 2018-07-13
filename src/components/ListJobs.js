@@ -16,20 +16,30 @@ const customStyles = {
 };
 
 class ListJobs extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      modalIsOpen2: false
     };
+
     this.openModal = this.openModal.bind(this);
+    this.openModal2 = this.openModal2.bind(this);
+
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.closeModal2 = this.closeModal2.bind(this);
+    console.log(this.props);
   }
 
   openModal() {
-  this.setState({modalIsOpen: true});
-}
+    this.setState({modalIsOpen: true});
+  }
+
+  openModal2() {
+    this.setState({modalIsOpen2: true});
+  }
 
 afterOpenModal() {
   // references are now sync'd and can be accessed.
@@ -39,11 +49,16 @@ closeModal() {
   this.setState({modalIsOpen: false});
 }
 
+closeModal2() {
+  this.setState({modalIsOpen2: false});
+}
+
   render(){
     return (
     <div class="row">
       <div id="container_jobs" class="col-md-7 col-md-offset-3">
-        <p id="information_jobs"> Nom entreprise - Nom Job </p>
+      <button id="modal_company" onClick={this.openModal2}> nom entreprise</button>
+        <p id="information_jobs"> Nom Job </p>
         <p id="pourcentage" > Pourcentage </p>
         <p> Description job </p>
         <p> List Skills </p>
@@ -59,6 +74,18 @@ closeModal() {
           <p>AT @</p>
           <button onClick={this.closeModal}>close</button>
         </Modal>
+
+        <Modal
+          id="modal_company"
+          isOpen={this.state.modalIsOpen2}
+          onRequestClose={this.closeModal2}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <p> {this.props.uid} </p>
+          <button onClick={this.closeModal2}>close</button>
+        </Modal>
+
       </div>
     </div>
 

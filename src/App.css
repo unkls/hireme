@@ -76,3 +76,9 @@
   float: right;
   margin-bottom: 1%;
 }
+
+#modal_company{
+  background:none;
+  border:none;
+  float: left;
+}
